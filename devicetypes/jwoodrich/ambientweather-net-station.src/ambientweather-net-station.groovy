@@ -44,64 +44,63 @@ metadata {
 
 	tiles {
         valueTile("temperature", "device.temperature", decoration: "flat", canChangeIcon: true) {
-            state "default", label:'${currentValue}° F', icon: "st.Weather.weather2"
+            state "default", label:'${currentValue}° F', icon: "st.Weather.weather2",
+                    backgroundColors:[
+            [value: 31, color: "#153591"],
+            [value: 44, color: "#1e9cbb"],
+            [value: 59, color: "#90d2a7"],
+            [value: 74, color: "#44b621"],
+            [value: 84, color: "#f1d801"],
+            [value: 95, color: "#d04e00"],
+            [value: 96, color: "#bc2323"]
+            ]
         }
+        valueTile("temperatureFeelsLike", "device.temperatureFeelsLike", decoration: "flat", canChangeIcon: true) {
+            state "default", label:'Feels Like ${currentValue}° F'
+        }        
         valueTile("humidity", "device.humidity", decoration: "flat") {
-            state "default", label:'${currentValue}%'
+            state "default", label:'${currentValue}% RH'
         }
         valueTile("hourlyRain", "device.hourlyRain", decoration: "flat") {
-            state "default", label:'${currentValue} in',
+            state "default", label:'${currentValue} in. this hour',
                   backgroundColors:[
                       [value: 0, color: "#ffffffff"],
-                      [value: 0.1, color: "#66ccff"],
-                      [value: 1, color: "#000099"]
+                      [value: 0.1, color: "#225bb7"],
+                      [value: 1, color: "#054cbf"]
                   ]
         }
         valueTile("dailyRain", "device.dailyRain", decoration: "flat") {
-            state "default", label:'${currentValue} in today',
+            state "default", label:'${currentValue} in. today',
                   backgroundColors:[
                       [value: 0, color: "#ffffffff"],
-                      [value: 0.1, color: "#66ccff"],
-                      [value: 1, color: "#000099"]
+                      [value: 0.1, color: "#225bb7"],
+                      [value: 1, color: "#054cbf"]
                   ]
         }
         valueTile("ultravioletIndex", "device.ultravioletIndex", decoration: "flat") {
-            state "default", label:'${currentValue}%'
+            state "default", label:'${currentValue}% UV Index'
+        }
+        valueTile("solarRadiation", "device.solarRadiation", decoration: "flat") {
+            state "default", label:'${currentValue} W/m\u00b2 Solar Radiation'
         }
         valueTile("windSpeed", "device.windSpeed", decoration: "flat") {
-            state "default", label:'${currentValue} MPH'
+            state "default", label:'${currentValue} MPH Current'
         }
         valueTile("windDirection", "device.windDirectionH", decoration: "flat") {
-            state "default", label:'${currentValue}'
+            state "default", label:'Wind from ${currentValue}'
         }
         valueTile("windGust", "device.windGust", decoration: "flat") {
             state "default", label:'${currentValue} MPH Gust'
         }
+        valueTile("maxDailyGust", "device.maxDailyGust", decoration: "flat") {
+            state "default", label:'${currentValue} MPH Max Gust'
+        }
 		main (["temperature"])
-		details(["temperature","humidity","windSpeed","windDirection","windGust","hourlyRain","dailyRain","ultravioletIndex"])
+		details(["temperature","humidity","temperatureFeelsLike","windDirection","windSpeed","windGust","maxDailyGust","hourlyRain","dailyRain","ultravioletIndex","solarRadiation"])
 	}
 }
 
 // parse events into attributes
 def parse(String description) {
 	log.debug "Parsing '${description}'"
-    // TODO: handle 'illuminance' attribute
-	// TODO: handle 'humidity' attribute
-	// TODO: handle 'temperature' attribute
-	// TODO: handle 'ultravioletIndex' attribute
-	// TODO: handle 'water' attribute
-	// TODO: handle 'windSpeed' attribute
-	// TODO: handle 'windGust' attribute
-	// TODO: handle 'windDirection' attribute
-	// TODO: handle 'maxDailyGust' attribute
-	// TODO: handle 'hourlyRain' attribute
-	// TODO: handle 'dailyRain' attribute
-	// TODO: handle 'weeklyRain' attribute
-	// TODO: handle 'monthlyRain' attribute
-	// TODO: handle 'totalRain' attribute
-	// TODO: handle 'barometerRelative' attribute
-	// TODO: handle 'barometerAbsolute' attribute
-	// TODO: handle 'temperatureFeelsLike' attribute
-	// TODO: handle 'dewPoint' attribute
-
 }
